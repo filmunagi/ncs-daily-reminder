@@ -1,6 +1,6 @@
 # ncs-daily-reminder
 
-매일 아침 텔레그램으로 NCS 문제풀이 앱(artleebk.netlify.app) 링크를 보내는 GitHub Actions 저장소.
+매일 아침 텔레그램으로 NCS 문제풀이 앱() 링크를 보내는 GitHub Actions 저장소.
 
 ## 설정 방법
 
