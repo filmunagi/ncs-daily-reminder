@@ -2,8 +2,14 @@ name: Daily NCS Reminder
 
 on:
   schedule:
-    # UTC 23:00 = KST 08:00 (다음날)
-    - cron: '0 23 * * *'
+    # KST 13:00 = UTC 04:00
+    - cron: '0 4 * * *'
+    # KST 16:00 = UTC 07:00
+    - cron: '0 7 * * *'
+    # KST 19:00 = UTC 10:00
+    - cron: '0 10 * * *'
+    # KST 21:00 = UTC 12:00
+    - cron: '0 12 * * *'
   workflow_dispatch: {}   # 수동 실행용 버튼
 
 jobs:
@@ -19,9 +25,12 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Send Telegram reminder
+      - name: Check attendance and send reminder if needed
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SYNC_CODE: ${{ secrets.SYNC_CODE }}
           APP_URL: https://artleebk.netlify.app
         run: python send_reminder.py
